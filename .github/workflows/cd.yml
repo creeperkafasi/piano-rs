@@ -1,0 +1,22 @@
+name: cd
+
+on:
+  push:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build for Linux 🔨🐧
+      run: cargo build --verbose --release
+    - name: Upload Linux Binary ⬆️🐧
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        path: target/release/piano-rs
